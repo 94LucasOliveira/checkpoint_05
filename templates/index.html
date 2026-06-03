@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Weather App</title>
+    <!-- Fase 3: Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #121212; color: white; }
+        .card { background-color: #1e1e1e; border: none; color: white; }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center">
+                <h1 class="mb-4">Clima Agora ☁️</h1>
+                
+                <form method="POST" class="d-flex mb-4">
+                    <input type="text" name="cidade" class="form-control me-2" placeholder="Digite uma cidade..." required>
+                    <button type="submit" class="btn btn-primary">Buscar</button>
+                </form>
+
+                <!-- Fase 4: Blocos Condicionais Jinja2 -->
+                {% if erro %}
+                    <div class="alert alert-danger">{{ erro }}</div>
+                {% endif %}
+
+                {% if clima %}
+                    <div class="card p-4 shadow-lg">
+                        <h2>{{ clima.name }}, {{ clima.sys.country }}</h2>
+                        <h3 class="display-4">{{ clima.main.temp | round }}°C</h3>
+                        <p class="text-capitalize">{{ clima.weather[0].description }}</p>
+                        <div class="d-flex justify-content-around mt-3">
+                            <span>💧 Umidade: {{ clima.main.humidity }}%</span>
+                            <span>🌬️ Vento: {{ clima.wind.speed }} km/h</span>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
