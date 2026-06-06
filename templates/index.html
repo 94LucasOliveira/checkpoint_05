@@ -23,11 +23,11 @@
                 </form>
 
                 <!-- Fase 4: Blocos Condicionais Jinja2 -->
-                {{% if erro %}}
+                {% if erro %}
                     <div class="alert alert-danger">{{ erro }}</div>
-                {{% endif %}}
+                {% endif %}
 
-                {{% if clima %}}
+                {% if clima %}
                     <div class="card p-4 shadow-lg">
                         <h2>{{ clima.name }}, {{ clima.sys.country }}</h2>
                         <h3 class="display-4">{{ clima.main.temp | round }}°C</h3>
@@ -37,7 +37,7 @@
                             <span>🌬️ Vento: {{ clima.wind.speed }} km/h</span>
                         </div>
                     </div>
-                {{% endif %}}
+                {% endif %}
             </div>
         </div>
     </div>
